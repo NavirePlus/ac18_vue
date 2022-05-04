@@ -18,7 +18,7 @@ app.provide('$IMAGE_CDN_URL', IMAGE_CDN_URL)
 app.provide('$getImageSource', getImageSource)
 app.use(VueScrollTo, {
     container: 'body',
-    duration: 1000,
+    duration: 800,
     offset: -60,
     easing: 'ease-in-out'
   })

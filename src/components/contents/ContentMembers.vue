@@ -1,5 +1,4 @@
 <template>
-  <!-- 参加者・サンプル Section-->
   <section class="page-section" id="members">
     <div class="container">
       <!-- 参加者・サンプル Section Heading-->
@@ -9,7 +8,10 @@
       <div class="divider-custom">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-icon">
-          <icon-base viewBox="0 0 47.5 47.5" addClass="fab"><icon-orange /></icon-base>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.5 47.5" class="fab">
+            <!-- Twitter Emoji - https://github.com/twitter/twemoji/tree/gh-pages -->
+            <defs id="defs6"><clipPath id="clipPath16" clipPathUnits="userSpaceOnUse"><path id="path18" d="M 0,38 38,38 38,0 0,0 0,38 Z"/></clipPath></defs><g transform="matrix(1.25,0,0,-1.25,0,47.5)" id="g10"><g id="g12"><g clip-path="url(#clipPath16)" id="g14"><g transform="translate(3.9995,17.5)" id="g20"><path id="path22" style="fill:#f4900c;fill-opacity:1;fill-rule:nonzero;stroke:none" d="M 0,0 C 0,9.112 7.387,16.5 16.5,16.5 25.613,16.5 33,9.112 33,0 33,-9.113 25.613,-16.5 16.5,-16.5 7.387,-16.5 0,-9.113 0,0"/></g><g transform="translate(12.4136,29.4146)" id="g24"><path id="path26" style="fill:#662113;fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 0,0 c -0.267,0.267 -0.797,0.197 -1.355,-0.12 -3.3,2.732 -8.653,3.652 -8.895,3.692 -0.546,0.09 -1.059,-0.277 -1.15,-0.821 -0.091,-0.544 0.276,-1.06 0.821,-1.151 0.053,-0.01 4.933,-0.854 7.821,-3.16 -0.275,-0.525 -0.324,-1.015 -0.07,-1.268 0.39,-0.391 1.34,-0.074 2.121,0.707 C 0.074,-1.34 0.391,-0.39 0,0"/></g><g transform="translate(22,36.0005)" id="g28"><path id="path30" style="fill:#5c913b;fill-opacity:1;fill-rule:nonzero;stroke:none" d="M 0,0 C 0,0 -3.106,-4.318 -7.021,-5.273 -10,-6 -13.959,-6.07 -14.354,-5.151 c -0.394,0.919 1.572,3.937 4.969,5.393 C -5.988,1.698 0,0 0,0"/></g></g></g></g>
+          </svg>
         </div>
         <div class="divider-custom-line"></div>
       </div>
@@ -23,17 +25,19 @@
           <div class="row">
             <div v-for="member in members" :key="member.name" class="col-lg-6 my-2" style="border-bottom: 1px dashed #888;">
               <div class="portfolio-item mx-auto text-center">
-                <a :href="sampleImage($IMAGE_CDN_URL, member.twitter, false)">
-                  <img class="img-fluid" :src="sampleImage($IMAGE_CDN_URL, member.twitter, true)" :title="`『${member.title}』 by ${member.name }`" width="420" height="226" />
-                </a>
+                <img @click="openModal(member.twitter)" class="img-fluid" :src="`${getPublicImagePath()}samples/${member.twitter}_thumb.webp`" :title="`『${member.title}』 by ${member.name }`" width="420" height="226" />
                 <p class="lead text-center">
                   {{ member.name }}<br />
                   <a class="btn btn-social btn-twitter-outline mx-1 my-2" :href="`https://twitter.com/${member.twitter}`" target="_blank">
-                    <icon-base viewBox="0 0 512 512" addClass="fab fa-fw fa-twitter"><icon-twitter /></icon-base>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fab fa-fw fa-twitter">
+                      <!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) -->
+                      <path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/>
+                    </svg>
                   </a>
-                  <a v-if="member.pixiv" class="btn btn-social btn-pixiv-outline mx-1 my-2" :style="pixivIconStyles" :href="`https://www.pixiv.net/users/${member.pixiv}`" target="_blank"></a>
+                  <a v-if="member.pixiv" class="btn btn-social btn-pixiv-outline mx-1 my-2" :href="`https://www.pixiv.net/users/${member.pixiv}`" target="_blank" :style="`background: url(${getPublicImagePath()}pixiv_icon.png) center/1.5rem 1.5rem no-repeat;`"></a>
                 </p>
               </div>
+              <image-modal :img_src="postImageItem" v-show="showImageModal" @close="closeModal" />
             </div>
           </div>
         </div>
@@ -43,20 +47,17 @@
 </template>
 
 <script>
-import { inject } from 'vue'
-import IconBase from './IconBase.vue'
-import IconOrange from './icons/IconOrange.vue'
-import IconTwitter from './icons/IconTwitter.vue'
-import { getImageSource } from '@/assets/js/ac18'
+import ImageModal from './ImageModal.vue'
 
 export default {
+  name: 'ContentMembers',
   components: {
-    IconBase,
-    IconOrange,
-    IconTwitter
+    ImageModal
   },
   data() {
     return {
+      showImageModal: false,
+      postImageItem: '',
       members: [
         {
           name: "アヤ",
@@ -181,40 +182,19 @@ export default {
       ]
     }
   },
-  computed: {
-    pixivIconStyles() {
-      const $IMAGE_CDN_URL = inject('$IMAGE_CDN_URL')
-      if ($IMAGE_CDN_URL.startsWith('http')) {
-        return {
-          '--url': `url("${$IMAGE_CDN_URL}pixiv_icon.png")`
-        }
-      } else {
-        return {}
-      }
-    }
-  },
   methods: {
-    sampleImage(image_cdn_url, twitter, thumb) {
-      if (thumb) {
-        return getImageSource(image_cdn_url, `samples/${twitter}_thumb.webp`)
-      } else {
-        return getImageSource(image_cdn_url, `samples/${twitter}.webp`)
-      }
+    getPublicImagePath() {
+      return process.env.VUE_APP_PUBLIC_IMAGE_PATH
+    },
+    openModal(twitter) {
+      this.showImageModal = true
+      this.postImageItem = `${this.getPublicImagePath()}samples/${twitter}.webp`
+      document.getElementsByTagName('body')[0].style.overflow = 'hidden'
+    },
+    closeModal() {
+      this.showImageModal = false
+      document.getElementsByTagName('body')[0].style.overflow = 'visible'
     }
   }
 }
 </script>
-
-<style scoped>
-.btn-pixiv-outline {
-  --url: url('@/assets/img/pixiv_icon.png');
-
-  background: var(--url) no-repeat;
-  background-size: 1.5rem 1.5rem;
-  background-position: center;
-  border-color: #0096fa;
-}
-.btn-pixiv-outline:hover {
-  background-color: #0096fa;
-}
-</style>

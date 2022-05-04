@@ -4,16 +4,27 @@
     本サイトはInternet Explorerには対応しておりません。<br />
     お手数ですが、Microsoft EgdeやGoogleChrome、Firefoxなど別のブラウザで閲覧ください。
   </div>
-  <AC18 />
+
+  <div id="whole">
+    <page-header />
+
+    <page-contents />
+
+    <page-footer />
+  </div>
 </template>
 
 <script>
-import AC18 from './components/AC18.vue'
+import PageHeader from './components/PageHeader.vue'
+import PageContents from './components/PageContents.vue'
+import PageFooter from './components/PageFooter.vue'
 
 export default {
   name: 'App',
   components: {
-    AC18
+    PageHeader,
+    PageContents,
+    PageFooter
   },
   created() {
     function check_is_ie() {
@@ -33,3 +44,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+@import 'https://fonts.googleapis.com/css?family=Lato:400,700';
+@import 'https://fonts.googleapis.com/css?family=Noto+Sans+JP';
+@import '@/assets/css/styles.css';
+@import '@/assets/css/custom.css';
+</style>
