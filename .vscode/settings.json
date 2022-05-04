@@ -1,0 +1,33 @@
+{
+  "[json]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+  "[css]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+  "[javascript]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+  "[vue]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/node_modules": true
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules": true,
+    "**/.hg/store/**": true
+  }
+}
