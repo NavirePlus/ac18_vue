@@ -288,16 +288,16 @@ button#open-menu {
 
 /* for SNS icon */
 .btn-twitter-outline {
-  color: #1da1f2;
-  border-color: #1da1f2;
+  color: #1da1f2 !important;
+  border-color: #1da1f2 !important;
 }
 .btn-twitter-outline:hover {
-  color: #fff;
-  background-color: #1da1f2;
+  color: #fff !important;
+  background-color: #1da1f2 !important;
 }
 .btn-pixiv-outline {
-  border-color: #0096fa;
+  border-color: #0096fa !important;
 }
 .btn-pixiv-outline:hover {
-  background-color: #0096fa;
+  background-color: #0096fa !important;
 }
