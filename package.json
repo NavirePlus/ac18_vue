@@ -6,7 +6,8 @@
     "serve-dev": "vue-cli-service serve --mode development",
     "serve-prod": "vue-cli-service serve --mode production",
     "build-dev": "vue-cli-service build --mode development",
-    "build-prod": "vue-cli-service build --mode production && cp CNAME ./docs/",
+    "build-prod": "vue-cli-service build --mode production",
+    "build:azure": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
